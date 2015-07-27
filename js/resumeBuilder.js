@@ -1,6 +1,6 @@
 var bio = {
 	"name" : "Josh Isham",
-	"role" : "Front-end Web Developer",
+	"role" : "Web Developer",
 	"contacts":{
 		"Mobile": "903-217-5644",
 		"Email": "JIKappaSigma@gmail.com",
@@ -9,7 +9,7 @@ var bio = {
 	},
 	"welcomeMessage": "Welcome to my resume, Please contact me for any info",
 	"skills": [
-		"awesomeness","Front-end","Java Script", "something special",
+		"awesomeness","Leadership","Communication", "something special",
 	],
 	"bioPic": "images/me.jpg"
 }
@@ -53,7 +53,7 @@ var work = {
 			"employer": "Catfish Cove",
 			"title": "Manager",
 			"dates": "July 2006 - July 2008",
-			"description": "As a Manager at Catfish Cove i Managed between 8-20 employees. I did payroll, time audits, expense reports and worked every position at the restaraunt. Catfish Cove is now out of Business."
+			"description": "As a Manager at Catfish Cove I Managed between 8-20 employees. I did payroll, time audits, expense reports, and worked every position at the restaraunt. Catfish Cove is now out of Business."
 		},
 		{
 			"employer": "L-3 Communications",
@@ -99,7 +99,6 @@ $("#header").append(formattedpic);
 
 
 if(bio.skills.length > 0) {
-	
 	$("#header").append(HTMLskillsStart);
 
 	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
@@ -111,14 +110,32 @@ if(bio.skills.length > 0) {
 	formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
 	$("#skills").append(formattedSkill);
 	formattedSkill = HTMLskills.replace("%data%", bio.skills[4]);
+	$("#skills").append(formattedSkill);
+	formattedSkill = HTMLskills.replace("%data%", bio.skills[5]);
 }
 
-for (job in work.jobs) {
-	$("#workExperience").append(HTMLworkStart);
+function displayWork() {
+	for (job in work.jobs) {
+		$("#workExperience").append(HTMLworkStart);
 
-	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-	var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-	var formattedEmployerTitle = formattedEmployer + formattedTitle;
+		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+		var formattedEmployerTitle = formattedEmployer + formattedTitle;
+		$(".work-entry:last").append(formattedEmployerTitle);
 
-	$(".work-entry:last").append(formattedEmployerTitle);
+		var formatteddates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+		$(".work-entry:last").append(formatteddates);
+		
+		var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+		$(".work-entry:last").append(formattedDescription);
+	}
 }
+
+displayWork();
+
+$(document).click(function(loc) {
+	var x = loc.pageX;
+	var y = loc.pageY;
+
+	logClicks(x,y);
+});
