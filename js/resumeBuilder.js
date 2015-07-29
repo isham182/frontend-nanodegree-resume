@@ -1,15 +1,16 @@
+// Text for Resume
 var bio = {
 	"name" : "Josh Isham",
 	"role" : "Web Developer",
 	"contacts":{
 		"Mobile": "903-217-5644",
-		"Email": "JIKappaSigma@gmail.com",
+		"Email": "JIKappaSigma@Gmail.com",
 		"Github": "Isham182",
 		"Location": "Dallas/Fort Worth"
 	},
 	"welcomeMessage": "Welcome to my resume, Please contact me for any info",
 	"skills": [
-		"awesomeness","Leadership","Communication", "something special",
+		"Awesomeness","Leadership","Communication", "Something special",
 	],
 	"bioPic": "images/me.jpg"
 }
@@ -76,11 +77,14 @@ var projects = {
 	}	
 	]
 }
+
+// Header and name
 var formattedrole = HTMLheaderRole.replace("%data%", bio.role);
 var formattedname = HTMLheaderName.replace("%data%", bio.name);
 $("#header").prepend(formattedrole);
 $("#header").prepend(formattedname);
 
+// Contact information
 var formattedmobile = HTMLmobile.replace("%data%", bio.contacts.Mobile);
 var formattedemail = HTMLemail.replace("%data%", bio.contacts.Email);
 var formattedgithub = HTMLgithub.replace("%data%", bio.contacts.Github);
@@ -91,13 +95,14 @@ $("#topContacts").append(formattedemail);
 $("#topContacts").append(formattedgithub);
 $("#topContacts").append(formattedlocation);
 
+// Rest of header
 var formattedmessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
 $("#header").append(formattedmessage);
 
 var formattedpic = HTMLbioPic.replace("%data%", "images/me.jpg");
 $("#header").append(formattedpic);
 
-
+// Skills in header
 if(bio.skills.length > 0) {
 	$("#header").append(HTMLskillsStart);
 
@@ -114,6 +119,7 @@ if(bio.skills.length > 0) {
 	formattedSkill = HTMLskills.replace("%data%", bio.skills[5]);
 }
 
+// Work History
 function displayWork() {
 	for (job in work.jobs) {
 		$("#workExperience").append(HTMLworkStart);
@@ -133,6 +139,7 @@ function displayWork() {
 
 displayWork();
 
+// clicks on a page function
 $(document).click(function(loc) {
 	var x = loc.pageX;
 	var y = loc.pageY;
